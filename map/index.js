@@ -1,4 +1,4 @@
-// Polyfill for map
+// Polyfill for Array.map
 Array.prototype.customMap = function (fn) {
   let result = [],
     context = this;

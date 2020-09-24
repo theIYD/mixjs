@@ -1,4 +1,4 @@
-// Polyfill for bind
+// Polyfill for Function.bind
 Function.prototype.customBind = function (...args) {
   let context = this,
     params = args.slice(1);
