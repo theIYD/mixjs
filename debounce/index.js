@@ -2,6 +2,7 @@ function getData() {
   // Fetch API
 }
 
+// Debounce method
 function debounce(fn, limit) {
   let timer;
   return function () {
