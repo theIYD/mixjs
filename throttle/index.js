@@ -13,7 +13,7 @@ function throttle(fn, limit) {
       flag = false;
       setTimeout(function () {
         flag = true;
-      });
+      }, limit);
     }
   };
 }
