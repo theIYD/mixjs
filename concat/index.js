@@ -8,11 +8,7 @@ Array.prototype.concat = function customConcat(...args) {
         resultant.push(arr[i]);
       }
     }
-    return;
   };
   flatten(args);
   return resultant;
 };
-
-const arr = [1, 2];
-console.log(arrc.concat([4, 5]));
