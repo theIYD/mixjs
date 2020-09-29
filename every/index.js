@@ -5,4 +5,6 @@ Array.prototype.every = function customEvery(cb, thisArg) {
       return false;
     }
   }
+
+  return true;
 };
