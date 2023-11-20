@@ -1,3 +1,3 @@
 # mixjs
 
-A playground to practice common problems & polyfills in JavaScript.
+A playground to practice stuff in JS.
