@@ -16,9 +16,9 @@ function any(promises) {
           errors[index] = err;
 
           if (errors.length === promises.length) {
-            reject(new Error('none resolved'));
+            reject(new Error("none resolved"));
           }
-        }
+        },
       );
     });
   });

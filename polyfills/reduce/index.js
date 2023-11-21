@@ -3,10 +3,10 @@ Array.prototype.reduce = function customReduce(reducer, initial) {
   let acc = initial,
     i = 0;
 
-  if (typeof initial === 'undefined') {
+  if (typeof initial === "undefined") {
     // Check if arr is empty
     if (this.length === 0) {
-      throw new TypeError('empty array with initial value');
+      throw new TypeError("empty array with initial value");
     }
 
     [acc] = this;

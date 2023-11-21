@@ -1,12 +1,12 @@
 // T = O(N) | S = O(N)
 var balancedBrackets = (string) => {
-  const openingBrackets = '([{';
-  const closingBrackets = ')]}';
+  const openingBrackets = "([{";
+  const closingBrackets = ")]}";
 
   const matchingBracket = {
-    ')': '(',
-    '}': '{',
-    ']': '[',
+    ")": "(",
+    "}": "{",
+    "]": "[",
   };
 
   let stack = [];

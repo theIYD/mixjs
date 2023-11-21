@@ -17,8 +17,8 @@ class MinMaxStack {
     let newMinMax = { min: val, max: val };
     if (this.minMaxStack.length !== 0) {
       let lastMinMax = this.minMaxStack[this.minMaxStack.length - 1];
-      newMinMax['min'] = Math.min(lastMinMax.min, val);
-      newMinMax['max'] = Math.max(lastMinMax.max, val);
+      newMinMax["min"] = Math.min(lastMinMax.min, val);
+      newMinMax["max"] = Math.max(lastMinMax.max, val);
     }
 
     this.minMaxStack.push(newMinMax);

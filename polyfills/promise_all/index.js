@@ -1,7 +1,7 @@
 // Implementation of promise.all
 function all(promises) {
   const _promises = promises.map((item) =>
-    item instanceof Promise ? item : Promise.resolve(item)
+    item instanceof Promise ? item : Promise.resolve(item),
   );
 
   // resolve if empty
@@ -29,7 +29,7 @@ function all(promises) {
           if (isErrored) return;
           isErrored = true;
           reject(error);
-        }
+        },
       );
     });
   });

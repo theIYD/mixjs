@@ -10,7 +10,7 @@ function retryPromise(fetcher, maxRetryCount) {
             // retry
             storeFetcher();
             maxRetryCount--;
-          }
+          },
         );
       } else {
         reject();

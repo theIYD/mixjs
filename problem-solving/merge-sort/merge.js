@@ -1,5 +1,5 @@
 // Merge Procedure
-module.exports = function(arr1, arr2) {
+module.exports = function (arr1, arr2) {
   let result = [],
     i = 0;
   j = 0;

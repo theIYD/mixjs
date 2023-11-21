@@ -1,9 +1,9 @@
 const interchange = (str, a, b) => {
-  let arr = str.split('');
+  let arr = str.split("");
   let temp = arr[a];
   arr[a] = arr[b];
   arr[b] = temp;
-  return arr.join('');
+  return arr.join("");
 };
 
 const permutations = (str, left, right) => {
@@ -19,4 +19,4 @@ const permutations = (str, left, right) => {
   }
 };
 
-permutations('abc', 0, 2);
+permutations("abc", 0, 2);

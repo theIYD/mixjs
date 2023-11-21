@@ -4,10 +4,11 @@
 	Example: hello -> olleh
  */
 const reverseString = (s) => {
-    let left = 0, right = s.length - 1;    
-    while (left < right) {
-        let tmp = s[left];
-        s[left++] = s[right];
-        s[right--] = tmp;
-    }
+  let left = 0,
+    right = s.length - 1;
+  while (left < right) {
+    let tmp = s[left];
+    s[left++] = s[right];
+    s[right--] = tmp;
+  }
 };

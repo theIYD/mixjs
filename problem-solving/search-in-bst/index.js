@@ -13,8 +13,10 @@
 	     1   3
  */
 var searchBST = (root, val) => {
-    if(!root || root.val === val) return root;
-     else temp = val < root.val ? searchBST(root.left, val) : searchBST(root.right, val)
-        
-    return temp
+  if (!root || root.val === val) return root;
+  else
+    temp =
+      val < root.val ? searchBST(root.left, val) : searchBST(root.right, val);
+
+  return temp;
 };
