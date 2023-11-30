@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <main style="display: flex; align-items: center; flex-direction: column;"">
+        <h2>Counter</h2>
+        <h3 id="count">0</h3>
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <button onclick="decrement();" style="margin-right: 16px;">-</button>
+            <button onclick="increment();">+</button>
+        </div>
+        <button style="margin-top: 20px;" onclick="reset();">Reset</button>
+    </main>
+
+    <script>
+        let counter = 0;
+        const countElement = document.getElementById("count");
+
+        function increment() {
+            counter = counter + 1;
+            countElement.innerText = counter;
+        }
+
+        function decrement() {
+            if(counter === 0) return;
+
+            counter = counter - 1;
+            countElement.innerText = counter;
+        }
+
+        function reset() {
+            counter = 0;
+            countElement.innerText = counter;
+        }
+    </script>
+</body>
+</html>
