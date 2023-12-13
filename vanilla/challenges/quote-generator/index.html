@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator</title>
+</head>
+<body>
+    <main style="display: flex; align-items: center; justify-content: center;">
+        <div id="loading" style="display: block;">Loading...</div>
+        <div style="display: none;" id="quote-wrapper">
+            <h1 id="quote"></h1>
+            <p id="author"></p>
+            <button id="generate">Generate</button>
+        </div>
+    </main>
+    <script>
+
+        async function fetchQuote() {
+            const quote = document.getElementById("quote");
+            const quoteWrapper = document.getElementById("quote-wrapper");
+            const authorElement = document.getElementById("author");
+            const loader = document.getElementById("loading");
+
+            let url = "https://api.quotable.io/quotes/random";
+            
+            try {
+                const result = await fetch(url);
+                const data = await result.json();
+                
+                if(Array.isArray(data) && data.length === 0) {
+                    alert("We do not have quotes available")
+                    return;
+                }
+
+                const { content, author } = data[0]
+                quote.innerText = content;
+                authorElement.innerText = author;
+
+                if(!loader || !quoteWrapper) {
+                    return;
+                }
+
+                loader.style.display = "none"
+                quoteWrapper.style.display = "flex"
+                quoteWrapper.style.alignItems = "center"
+                quoteWrapper.style.justifyContent = "center"
+                quoteWrapper.style.flexDirection = "column"
+
+            } catch(err) {
+                alert(err)
+            }
+        }
+
+        window.onload = function() {
+            fetchQuote();
+
+            const generate = document.getElementById("generate");
+            generate.onclick = fetchQuote
+
+        }
+    </script>   
+</body>
+</html>
