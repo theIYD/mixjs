@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+      </head>
+      <body>
+        <label>Enter text:</label>
+        <input id="search-suggestions" type="text" />
+        <div id="suggestions" style="width: 400px; height: 200px"></div>
+      </body>
+    </html>
+
+    <script>
+      // ================================= Mock Server Start =============================
+      var FAILURE_COEFF = 10;
+      var MAX_SERVER_LATENCY = 200;
+
+      function getRandomBool(n) {
+        var maxRandomCoeff = 1000;
+        if (n > maxRandomCoeff) n = maxRandomCoeff;
+        return Math.floor(Math.random() * maxRandomCoeff) % n === 0;
+      }
+
+      function getSuggestions(text) {
+        var pre = "pre";
+        var post = "post";
+        var results = [];
+        if (getRandomBool(2)) {
+          results.push(pre + text);
+        }
+        if (getRandomBool(2)) {
+          results.push(text);
+        }
+        if (getRandomBool(2)) {
+          results.push(text + post);
+        }
+        if (getRandomBool(2)) {
+          results.push(pre + text + post);
+        }
+        return new Promise((resolve, reject) => {
+          var randomTimeout = Math.random() * MAX_SERVER_LATENCY;
+          setTimeout(() => {
+            if (getRandomBool(FAILURE_COEFF)) {
+              reject();
+            } else {
+              resolve(results);
+            }
+          }, randomTimeout);
+        });
+      }
+      // ================================= Mock Server End =============================
+
+      const searchInputBox = document.getElementById("search-suggestions");
+      const suggestionsDiv = document.getElementById("suggestions");
+
+      searchInputBox.addEventListener("keyup", (event) => {
+        const searchStr = event.target.value;
+        suggestionsDiv.innerHTML = "";
+        fetchSuggestions(searchStr);
+      });
+
+      searchInputBox.addEventListener("blur", (event) => {
+        console.log("event", event);
+        event.stopPropagation();
+        suggestionsDiv.style.display = "none";
+      });
+
+      searchInputBox.addEventListener("focus", (event) => {
+        suggestionsDiv.style.display = "block";
+      });
+
+      const fetchSuggestions = async (text) => {
+        const suggestions = await getSuggestions(text);
+        const fragment = document.createDocumentFragment();
+
+        suggestions.forEach((suggestion) => {
+          const element = buildSuggestion(suggestion);
+          fragment.appendChild(element);
+        });
+
+        suggestionsDiv.appendChild(fragment);
+      };
+
+      const onSuggestionClick = (event) => {
+        const suggestion = event.target.innerText;
+        searchInputBox.value = `${suggestion} `;
+        suggestionsDiv.style.display = "none";
+        searchInputBox.focus();
+      };
+
+      const buildSuggestion = (suggestion) => {
+        const paragraphTag = document.createElement("p");
+        paragraphTag.style.color = "red";
+        paragraphTag.innerText = suggestion;
+        paragraphTag.style.backgroundColor = "#ddd";
+
+        paragraphTag.addEventListener("click", (event) => {
+          onSuggestionClick(event);
+        });
+
+        return paragraphTag;
+      };
+    </script>
+  </body>
+</html>
